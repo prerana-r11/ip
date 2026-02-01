@@ -1,5 +1,5 @@
 public class Task {
-    private final String description;
+    protected final String description;
     private boolean isDone;
     /**
      * Creates a task with the given description.
