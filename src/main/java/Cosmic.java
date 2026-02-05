@@ -7,6 +7,9 @@ public class Cosmic {
         System.out.println("Hello! I'm Cosmic");
         System.out.println("What can I do for you?");
         while(true) {
+            if (!scanner.hasNextLine()) {
+                break;
+            }
             String input = scanner.nextLine();
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
