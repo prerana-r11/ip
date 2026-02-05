@@ -35,8 +35,8 @@ public class Cosmic {
            }
            if(input.startsWith("todo ")){
                System.out.println("Got it. I've added this task:");
-               String desc= input.substring(5);
-               tasks[taskCount]= new Todo(desc);
+               String todoTaskName= input.substring(5);
+               tasks[taskCount]= new Todo(todoTaskName);
                System.out.println(" " + tasks[taskCount]);
                taskCount++;
                System.out.println("Now you have " +taskCount+ " tasks in the list.");
@@ -45,8 +45,8 @@ public class Cosmic {
            }
            if(input.startsWith("deadline ")){
                System.out.println("Got it. I've added this task:");
-               String[] parts= input.substring(9).split(" /by");
-               tasks[taskCount]= new Deadline(parts[0],parts[1]);
+               String[] deadlineParts= input.substring(9).split(" /by");
+               tasks[taskCount]= new Deadline(deadlineParts[0],deadlineParts[1]);
                System.out.println(" " + tasks[taskCount]);
                taskCount++;
                System.out.println("Now you have " +taskCount+ " tasks in the list.");
@@ -55,8 +55,8 @@ public class Cosmic {
            }
            if(input.startsWith("event ")){
                System.out.println("Got it. I've added this task:");
-               String[] parts= input.substring(6).split(" /from | /to");
-               tasks[taskCount]= new Events(parts[0],parts[1],parts[2]);
+               String[] eventParts= input.substring(6).split(" /from | /to");
+               tasks[taskCount]= new Events(eventParts[0],eventParts[1],eventParts[2]);
                System.out.println(" " + tasks[taskCount]);
                taskCount++;
                System.out.println("Now you have " +taskCount+ " tasks in the list.");
