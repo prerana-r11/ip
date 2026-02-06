@@ -10,18 +10,23 @@ public class Task {
         this.description= description;
         this.isDone=false;
     }
+
     /**
      * Marks this task as done.
      */
     public void markAsDone() {
+
         isDone=true;
     }
+
     /**
      * Marks this task as not done.
      */
     public void markAsNotDone() {
+
         isDone=false;
     }
+
     /**
      * Returns the status icon of the task.
      *
@@ -30,6 +35,7 @@ public class Task {
     public String getStatusIcon() {
         return isDone ? "X" : " ";
     }
+
     /**
      * Returns the string representation of this task.
      *
@@ -37,6 +43,7 @@ public class Task {
      */
     @Override
     public String toString() {
+
         return "[" +getStatusIcon() +"]" +description;
     }
 }
