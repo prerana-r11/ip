@@ -2,9 +2,6 @@ import java.util.Scanner;
 public class Cosmic {
     private static final int MARK_INDEX_START=5;
     private static final int UNMARK_INDEX_START=7;
-    private static final int TODO_INDEX_START=5;
-    private static final int DEADLINE_INDEX_START=9;
-    private static final int EVENT_INDEX_START=6;
     private static final int MAX_TASK=100;
     
     public static void main(String[] args) {
@@ -20,28 +17,31 @@ public class Cosmic {
             }
             String input = scanner.nextLine();
 
-            if (handleExit(input)){
-                break;
-            }
+            try {
+                if (handleExit(input)) {
+                    break;
+                }
 
-            if (handleListTasks(input, taskCount, tasks)){
-                continue;
-            }
+                if (handleListTasks(input, taskCount, tasks)) {
+                    continue;
+                }
 
-            if (handleMarkTask(input, tasks,taskCount)){
-                continue;
-            }
+                if (handleMarkTask(input, tasks, taskCount)) {
+                    continue;
+                }
 
-            if (handleUnmarkTask(input, tasks,taskCount)){
-                continue;
+                if (handleUnmarkTask(input, tasks, taskCount)) {
+                    continue;
+                }
+                int updatedCount = handleAddTaskTypes(input, tasks, taskCount);
+                if (updatedCount != taskCount) {
+                    taskCount = updatedCount;
+                    continue;
+                }
+                throw new CosmicException("Sorry I don't understand that :(");
+            }catch(CosmicException e){
+                System.out.println(("OOPS!!! " + e.getMessage()));
             }
-            int updatedCount = handleAddTaskTypes(input, tasks, taskCount);
-            if (updatedCount != taskCount) {
-                taskCount = updatedCount;
-                continue;
-            }
-
-            printUnknownCommand();
         }
         scanner.close();
     }
@@ -50,33 +50,75 @@ public class Cosmic {
         System.out.println("Hello! I'm Cosmic");
         System.out.println("What can I do for you?");
     }
-    private static void printUnknownCommand() {
-        System.out.println("Sorry, I don't understand that");
-    }
-
-    private static int handleAddTaskTypes(String input, Task[] tasks, int taskCount) {
+    private static int handleAddTaskTypes(String input, Task[] tasks, int taskCount) throws CosmicException{
         int newTaskCount = taskCount;
+        if (input.startsWith("todo")) {
+            String todoTaskName = input.replaceFirst("todo", "").trim();
 
-        if (input.startsWith("todo ")) {
+            if (todoTaskName.isEmpty()) {
+                throw new CosmicException("The description of a todo cannot be empty.");
+            }
+
             System.out.println("Got it. I've added this task:");
-            String todoTaskName = input.substring(TODO_INDEX_START);
             tasks[taskCount] = new Todo(todoTaskName);
             newTaskCount = printAddedTask(tasks, taskCount);
 
-        } else if (input.startsWith("deadline ")) {
+        } else if (input.startsWith("deadline")) {
+            String content = input.replaceFirst("deadline","").trim();
+            if (content.isEmpty()) {
+                throw new CosmicException("The description of a deadline cannot be empty");
+            }
+            if(!content.contains("/by")){
+                throw new CosmicException("The deadline must include /by date");
+            }
+            String[] deadlineParts = content.split("/by",2);
+            String description=deadlineParts[0].trim();
+            String by = (deadlineParts.length > 1) ? deadlineParts[1].trim() : "";
+            if(description.isEmpty()){
+                throw new CosmicException("The description of a deadline cannot be empty");
+            }
+            if(by.isEmpty()){
+                throw new CosmicException("The date of a deadline cannot be empty");
+            }
             System.out.println("Got it. I've added this task:");
-            String[] deadlineParts = input.substring(DEADLINE_INDEX_START).split(" /by");
-            tasks[taskCount] = new Deadline(deadlineParts[0], deadlineParts[1]);
+            tasks[taskCount] = new Deadline(description, by);
             newTaskCount = printAddedTask(tasks, taskCount);
 
-        } else if (input.startsWith("event ")) {
+        } else if (input.startsWith("event")) {
+            String content = getEventContent(input);
+            if (content.isEmpty()) {
+                throw new CosmicException("The description of a event cannot be empty");
+            }
+            if(!content.contains(("/from"))){
+                throw new CosmicException("The event must contain /from");
+            }
+            if(!content.contains(("/to"))){
+                throw new CosmicException("The event must contain /to");
+            }
+            String[] eventParts = content.split("/from|/to",3);
+            String description=eventParts[0].trim();
+            String from=(eventParts.length > 1) ? eventParts[1].trim() : "";
+            String to=(eventParts.length > 2) ? eventParts[2].trim() : "";
+            if(description.isEmpty()){
+                throw new CosmicException("The description of the event cannot be empty");
+            }
+            if(from.isEmpty()){
+                throw new CosmicException("The from date of the event cannot be empty");
+            }
+            if(to.isEmpty()){
+                throw new CosmicException("The to date of the event cannot be empty");
+            }
             System.out.println("Got it. I've added this task:");
-            String[] eventParts = input.substring(EVENT_INDEX_START).split(" /from | /to");
-            tasks[taskCount] = new Events(eventParts[0], eventParts[1], eventParts[2]);
+            tasks[taskCount] = new Events(description, from, to);
             newTaskCount = printAddedTask(tasks, taskCount);
         }
 
         return newTaskCount;
+    }
+
+    private static String getEventContent(String input) {
+        String content= input.replaceFirst("event","").trim();
+        return content;
     }
 
 
