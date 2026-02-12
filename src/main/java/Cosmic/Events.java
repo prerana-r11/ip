@@ -1,7 +1,9 @@
+package Cosmic;
+
 /**
  * An event task consists of a description, a start and end time.
  */
-public class Events extends Task{
+public class Events extends Task {
     protected String from;
     protected String to;
 

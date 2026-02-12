@@ -1,3 +1,5 @@
+package Cosmic;
+
 public class Task {
     protected final String description;
     private boolean isDone;
@@ -39,7 +41,7 @@ public class Task {
     /**
      * Returns the string representation of this task.
      *
-     * @return Task formatted as a string.
+     * @return Cosmic.Task formatted as a string.
      */
     @Override
     public String toString() {
