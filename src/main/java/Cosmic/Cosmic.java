@@ -1,3 +1,5 @@
+package Cosmic;
+
 import java.util.Scanner;
 public class Cosmic {
     private static final int MARK_INDEX_START=5;
@@ -47,10 +49,10 @@ public class Cosmic {
     }
 
     private static void printGreeting() {
-        System.out.println("Hello! I'm Cosmic");
+        System.out.println("Hello! I'm Cosmic.Cosmic");
         System.out.println("What can I do for you?");
     }
-    private static int handleAddTaskTypes(String input, Task[] tasks, int taskCount) throws CosmicException{
+    private static int handleAddTaskTypes(String input, Task[] tasks, int taskCount) throws CosmicException {
         int newTaskCount = taskCount;
         if (input.startsWith("todo")) {
             String todoTaskName = input.replaceFirst("todo", "").trim();
@@ -122,7 +124,7 @@ public class Cosmic {
     }
 
 
-    private static boolean handleUnmarkTask(String input, Task[] tasks,int taskCount) {
+    private static boolean handleUnmarkTask(String input, Task[] tasks, int taskCount) {
         if(input.startsWith("unmark ")){
             try {
                 int index = Integer.parseInt(input.substring(UNMARK_INDEX_START)) - 1;
@@ -141,7 +143,7 @@ public class Cosmic {
         return false;
     }
 
-    private static boolean handleMarkTask(String input, Task[] tasks,int taskCount) {
+    private static boolean handleMarkTask(String input, Task[] tasks, int taskCount) {
         if(input.startsWith("mark ")){
             try {
                 int index = Integer.parseInt(input.substring(MARK_INDEX_START)) - 1;

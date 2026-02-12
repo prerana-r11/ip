@@ -1,3 +1,5 @@
+package Cosmic;
+
 public class CosmicException extends Exception{
     private String message;
 

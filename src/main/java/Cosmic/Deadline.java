@@ -1,11 +1,13 @@
+package Cosmic;
+
 /**
  * A deadline task consists of a description and due date
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     protected String by;
 
     /**
-     * Creates a Deadline task with the given description and due date.
+     * Creates a Cosmic.Deadline task with the given description and due date.
      *
      * @param description The task description.
      * @param by The deadline of the task.
