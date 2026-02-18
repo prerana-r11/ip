@@ -6,28 +6,17 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import java.util.ArrayList;
-
-
-
-
 public class Cosmic {
     private static final int MARK_INDEX_START = 5;
     private static final int UNMARK_INDEX_START = 7;
     private static final int MAX_TASK = 100;
-
-
     private static final String FILE_PATH = "./data/cosmic.txt";
-
-
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<>();
 
         loadTasks(tasks);
-
-
         printGreeting();
 
         while (true) {
@@ -59,6 +48,8 @@ public class Cosmic {
                 }
 
                 if (handleDelete(input, tasks)) {
+                    continue;
+                }
 
                 if (handleAddTaskTypes(input, tasks)) {
 
@@ -88,8 +79,7 @@ public class Cosmic {
             System.out.println("Got it. I've added this task:");
             tasks.add(new Todo(todoTaskName));
             printAddedTask(tasks);
-  saveTasks(tasks);
-
+            saveTasks(tasks);
             return true;
 
         } else if (input.startsWith("deadline")) {
@@ -112,10 +102,6 @@ public class Cosmic {
             System.out.println("Got it. I've added this task:");
             tasks.add(new Deadline(description, by));
             printAddedTask(tasks);
-
-            return true;
-
-
             saveTasks(tasks);
             return true;
 
@@ -146,9 +132,7 @@ public class Cosmic {
             System.out.println("Got it. I've added this task:");
             tasks.add(new Events(description, from, to));
             printAddedTask(tasks);
-
             saveTasks(tasks);
-
             return true;
         }
 
@@ -170,9 +154,7 @@ public class Cosmic {
                     return true;
                 }
                 tasks.get(index).markAsNotDone();
-
                 saveTasks(tasks);
-
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(" " + tasks.get(index));
             } catch (NumberFormatException e) {
@@ -192,7 +174,6 @@ public class Cosmic {
                     return true;
                 }
                 tasks.get(index).markAsDone();
-
                 saveTasks(tasks);
                 System.out.println("Nice! I've marked this task as done:");
                 System.out.println(" " + tasks.get(index));
@@ -250,7 +231,7 @@ public class Cosmic {
             return true;
         }
         return false;
-
+    }
 
     private static void saveTasks(ArrayList<Task> tasks) {
         try {
