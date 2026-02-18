@@ -1,16 +1,32 @@
 package Cosmic;
-
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import java.util.ArrayList;
+
+
+
 
 public class Cosmic {
     private static final int MARK_INDEX_START = 5;
     private static final int UNMARK_INDEX_START = 7;
     private static final int MAX_TASK = 100;
 
+
+    private static final String FILE_PATH = "./data/cosmic.txt";
+
+
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<>();
+
+        loadTasks(tasks);
+
 
         printGreeting();
 
@@ -37,11 +53,15 @@ public class Cosmic {
                     continue;
                 }
 
+
                 if (handleAddTaskTypes(input, tasks)) {
                     continue;
                 }
 
                 if (handleDelete(input, tasks)) {
+
+                if (handleAddTaskTypes(input, tasks)) {
+
                     continue;
                 }
                 throw new CosmicException("Sorry I don't understand that :(");
@@ -68,6 +88,8 @@ public class Cosmic {
             System.out.println("Got it. I've added this task:");
             tasks.add(new Todo(todoTaskName));
             printAddedTask(tasks);
+  saveTasks(tasks);
+
             return true;
 
         } else if (input.startsWith("deadline")) {
@@ -90,6 +112,11 @@ public class Cosmic {
             System.out.println("Got it. I've added this task:");
             tasks.add(new Deadline(description, by));
             printAddedTask(tasks);
+
+            return true;
+
+
+            saveTasks(tasks);
             return true;
 
         } else if (input.startsWith("event")) {
@@ -119,6 +146,9 @@ public class Cosmic {
             System.out.println("Got it. I've added this task:");
             tasks.add(new Events(description, from, to));
             printAddedTask(tasks);
+
+            saveTasks(tasks);
+
             return true;
         }
 
@@ -140,6 +170,9 @@ public class Cosmic {
                     return true;
                 }
                 tasks.get(index).markAsNotDone();
+
+                saveTasks(tasks);
+
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(" " + tasks.get(index));
             } catch (NumberFormatException e) {
@@ -159,6 +192,8 @@ public class Cosmic {
                     return true;
                 }
                 tasks.get(index).markAsDone();
+
+                saveTasks(tasks);
                 System.out.println("Nice! I've marked this task as done:");
                 System.out.println(" " + tasks.get(index));
             } catch (NumberFormatException e) {
@@ -193,6 +228,7 @@ public class Cosmic {
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
     }
 
+
     private static boolean handleDelete(String input, ArrayList<Task> tasks) {
         if (input.startsWith("delete ")) {
             try {
@@ -214,6 +250,85 @@ public class Cosmic {
             return true;
         }
         return false;
+
+
+    private static void saveTasks(ArrayList<Task> tasks) {
+        try {
+            File file = new File(FILE_PATH);
+            file.getParentFile().mkdirs();
+
+            FileWriter writer = new FileWriter(file);
+
+            for (Task t : tasks) {
+                writer.write(t.toFileString() + "\n");
+            }
+
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error saving tasks.");
+        }
+    }
+
+    private static void loadTasks(ArrayList<Task> tasks) {
+        File file = new File(FILE_PATH);
+
+        if (!file.exists()) {
+            return;
+        }
+
+        try {
+            Scanner fileScanner = new Scanner(file);
+
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+                Task task = parseTask(line);
+                if (task != null) {
+                    tasks.add(task);
+                }
+            }
+
+            fileScanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Error loading tasks.");
+        }
+    }
+
+    private static Task parseTask(String line) {
+        try {
+            String[] parts = line.split(" \\| ");
+
+            String type = parts[0];
+            boolean isDone = parts[1].equals("1");
+
+            Task task = null;
+
+            switch (type) {
+            case "T":
+                task = new Todo(parts[2]);
+                break;
+
+            case "D":
+                task = new Deadline(parts[2], parts[3]);
+                break;
+
+            case "E":
+                task = new Events(parts[2], parts[3], parts[4]);
+                break;
+
+            default:
+                return null;
+            }
+
+            if (task != null && isDone) {
+                task.markAsDone();
+            }
+
+            return task;
+
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
+
 
