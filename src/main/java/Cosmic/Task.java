@@ -2,7 +2,7 @@ package Cosmic;
 
 public class Task {
     protected final String description;
-    private boolean isDone;
+    protected boolean isDone;
     /**
      * Creates a task with the given description.
      *
@@ -48,4 +48,9 @@ public class Task {
 
         return "[" +getStatusIcon() +"]" +description;
     }
+
+    public String toFileString() {
+        return "T | " + (isDone ? "1" : "0") + " | " + description;
+    }
+
 }
