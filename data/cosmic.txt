@@ -1,2 +1,2 @@
-T | 1 | read book
-D | 0 | return book | tomorrow
+E | 0 | Prerana attend Cs2113 lecture Friday 20 Feb 2026 | 4pm | 6pm
+D | 0 | Prerana submit UG draft | today 2359
