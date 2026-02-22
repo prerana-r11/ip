@@ -48,6 +48,7 @@ public class Cosmic {
                 }
 
                 if (handleDelete(input, tasks)) {
+                    saveTasks(tasks);
                     continue;
                 }
 
@@ -140,10 +141,8 @@ public class Cosmic {
     }
 
     private static String getEventContent(String input) {
-        String content = input.replaceFirst("event", "").trim();
-        return content;
+        return input.replaceFirst("event", "").trim();
     }
-
 
     private static boolean handleUnmarkTask(String input, ArrayList<Task> tasks) {
         if (input.startsWith("unmark ")) {
