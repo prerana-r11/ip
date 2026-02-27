@@ -1,11 +1,19 @@
 package Cosmic;
 
 import java.util.Scanner;
-
+/**
+ * This class handles the main program loop, processes user input,
+ * coordinates task operations, and interacts with the UI and Storage classes.
+ */
 public class Cosmic {
 
     private static final String FILE_PATH = "./data/cosmic.txt";
 
+    /**
+     * Main method
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         Storage storage = new Storage(FILE_PATH);
         TaskList tasks = storage.load();
@@ -126,10 +134,23 @@ public class Cosmic {
         scanner.close();
     }
 
+    /**
+     * Extracts the description part from a command after its prefix.
+     *
+     * @param input The full user input.
+     * @return The trimmed content after the prefix.
+     */
     private static String getFindContent(String input) {
         return input.substring(5).trim();
     }
 
+    /**
+     * Extracts and validates the content of an event command.
+     *
+     * @param input The full user input.
+     * @return The content after the "event" prefix.
+     * @throws CosmicException If required keywords are missing.
+     */
     private static String getEventContent(String input) throws CosmicException {
         String content = input.substring(6).trim();
 
@@ -139,6 +160,13 @@ public class Cosmic {
         return content;
     }
 
+    /**
+     * Extracts and validates the content of a deadline command.
+     *
+     * @param input The full user input.
+     * @return The content after the "deadline" prefix.
+     * @throws CosmicException If the "/by" keyword is missing.
+     */
     private static String getDeadlineContent(String input) throws CosmicException {
         String content = input.substring(9).trim();
 
@@ -148,6 +176,13 @@ public class Cosmic {
         return content;
     }
 
+    /**
+     * Returns the content of a command after the given prefix.
+     *
+     * @param input The full user input.
+     * @param prefix The command prefix.
+     * @return The trimmed content after the prefix.
+     */
     private static String getContentAfterPrefix(String input, String prefix) {
         return input.substring(prefix.length()).trim();
     }
