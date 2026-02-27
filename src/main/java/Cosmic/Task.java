@@ -35,9 +35,13 @@ public class Task {
      * @return "X" if done, otherwise a space.
      */
     public String getStatusIcon() {
+
         return isDone ? "X" : " ";
     }
 
+    public String getDescription(){
+        return description;
+    }
     /**
      * Returns the string representation of this task.
      *
