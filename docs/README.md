@@ -27,7 +27,7 @@ e.g. in add n/NAME, NAME is a parameter which can be used as add n/Peter Parker.
 | Find task | `find KEYWORD` |
 | Exit | `bye` |
 
-## **Features:** 
+# **Features:** 
 
 # **Adding a todo task: todo**
 
