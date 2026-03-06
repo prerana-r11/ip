@@ -40,6 +40,7 @@ public class Cosmic {
                     Task deleted = tasks.delete(index);
                     storage.save(tasks);
                     ui.printDeletedTask(deleted, tasks.size());
+                    continue;
                 }
 
                 if (input.startsWith("mark ")) {
@@ -47,6 +48,7 @@ public class Cosmic {
                     tasks.mark(index);
                     storage.save(tasks);
                     ui.printMarked(tasks.get(index));
+                    continue;
                 }
 
                 if (input.startsWith("unmark ")) {
@@ -54,6 +56,7 @@ public class Cosmic {
                     tasks.unmark(index);
                     storage.save(tasks);
                     ui.printUnmarked(tasks.get(index));
+                    continue;
                 }
 
                 if (input.startsWith("todo ")) {
