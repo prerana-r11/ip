@@ -30,57 +30,93 @@ e.g. in add n/NAME, NAME is a parameter which can be used as add n/Peter Parker.
 **Features:** 
 
 **Adding a todo task: todo**
-Adds a task .
+
+Adds a task.
+
 Format: todo DESCRIPTION
-Examples:
-•	todo read book
-•	todo eat dinner
+
+Examples:	
+
+•todo read book 
+
+•todo eat dinner
 
 **Adding a deadline task: deadline**
+
 Adds a task with a deadline.
+
 Examples:
+
 •	deadline finish assignment /by 11 March 2026
+
 •	deadline finish exam /by 5:30
 
 **Adding an event task: event**
+
 Adds a task with a start and end date/time.
+
 Format: event DESCRIPTION /from START /to END
+
 Examples:
+
 •	event team meeting /from Monday 2pm /to Monday 4pm
 
 **Listing all tasks: list**
+
 Returns a list of all tasks provided by the user.
+
 Format: list
 
 **Marking a task: mark**
+
 Marks a task as done.
+
 Format: mark TASK_INDEX
+
 •	TASK_INDEX must be a positive integer.
+
 Examples:
+
 •	mark 1
+
 •	mark 10
 
 **Unmarking a task: unmark**
+
 Unmarks a task as not done.
+
 Format: unmark TASK_INDEX
+
 •	TASK_INDEX must be a positive integer.
+
 Example:
+
 •	unmark 5
 
 **Deleting a task: delete**
+
 Deletes a particular task as specified by the task index provided by the user.
+
 Format: delete TASK_INDEX
+
 Example 
+
 •	delete 1
+
 •	delete 5
 
 **Exiting the program: bye**
+
 Stops execution of the program with an exit message
 
 **Finding a keyword in the task list: find**
+
 Returns all the tasks containing the keyword specified by the user
+
 Format: find KEYWORD
+
 Examples:
+
 •	find book
 
 
