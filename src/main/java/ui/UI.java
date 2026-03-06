@@ -1,4 +1,7 @@
-package Cosmic;
+package ui;
+
+import task.Task;
+import task.TaskList;
 
 /**
  * Handles all user interface interactions.
@@ -17,7 +20,7 @@ public class UI {
      * @param task The task that was added.
      * @param total The updated total number of tasks.
      */
-    public void printAddedTask(Task task,int total){
+    public void printAddedTask(Task task, int total){
         System.out.println("Got it. I've added this task:");
         System.out.println(" " + task);
         System.out.println("Now you have " + total + " tasks in the list.");

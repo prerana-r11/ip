@@ -1,4 +1,4 @@
-package Cosmic;
+package task;
 
 public class Task {
     protected final String description;
@@ -45,7 +45,7 @@ public class Task {
     /**
      * Returns the string representation of this task.
      *
-     * @return Cosmic.Task formatted as a string.
+     * @return task.Task formatted as a string.
      */
     @Override
     public String toString() {

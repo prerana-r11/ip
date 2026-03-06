@@ -1,4 +1,4 @@
-package Cosmic;
+package task;
 
 /**
  * An event task consists of a description, a start and end time.

@@ -1,4 +1,6 @@
-package Cosmic;
+package task;
+import Cosmic.CosmicException;
+
 import java.util.ArrayList;
 /**
  * Represents a list of tasks.

@@ -1,4 +1,6 @@
-package Cosmic;
+package storage;
+
+import task.*;
 
 import java.io.*;
 import java.util.Scanner;

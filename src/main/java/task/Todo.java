@@ -1,12 +1,12 @@
-package Cosmic;
+package task;
 
 /**
- * A Cosmic.Todo task consists of a description of the task
+ * A task.Todo task consists of a description of the task
  */
 public class Todo extends Task {
 
     /**
-     * Creates a Cosmic.Todo task with the given description.
+     * Creates a task.Todo task with the given description.
      *
      * @param description The description of the todo task.
      */

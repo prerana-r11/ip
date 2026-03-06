@@ -1,5 +1,9 @@
 package Cosmic;
 
+import storage.Storage;
+import task.*;
+import ui.UI;
+
 import java.util.Scanner;
 /**
  * This class handles the main program loop, processes user input,
