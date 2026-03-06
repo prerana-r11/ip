@@ -37,6 +37,9 @@ public class Cosmic {
 
                 if (input.startsWith("delete ")) {
                     int index = Integer.parseInt(input.substring(7)) - 1;
+                    if (index < 0 || index >= tasks.size()) {
+                        throw new CosmicException("This task number does not exist.");
+                    }
                     Task deleted = tasks.delete(index);
                     storage.save(tasks);
                     ui.printDeletedTask(deleted, tasks.size());
