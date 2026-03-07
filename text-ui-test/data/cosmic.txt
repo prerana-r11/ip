@@ -1,0 +1,15 @@
+T | 0 | read book
+D | 0 | assignment | tomorrow
+E | 0 | meeting | 2pm | 4pm
+T | 0 | read book
+T | 0 | do homework
+D | 0 | assignment | tomorrow
+E | 0 | meeting | 2pm | 4pm
+T | 0 | read book
+T | 0 | do homework
+D | 0 | assignment | tomorrow
+E | 0 | meeting | 2pm | 4pm
+T | 0 | read book
+T | 0 | do homework
+D | 0 | assignment | tomorrow
+E | 0 | meeting | 2pm | 4pm

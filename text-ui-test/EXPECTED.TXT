@@ -1,12 +1,61 @@
-Hello! I'm Cosmic.Cosmic
-What can I do for you?
-OOPS!!! The description of a todo cannot be empty.
-OOPS!!! The description of a deadline cannot be empty
-OOPS!!! The deadline must include /by date
-OOPS!!! The date of a deadline cannot be empty
-OOPS!!! The description of a event cannot be empty
-OOPS!!! The event must contain /from
-OOPS!!! The description of the event cannot be empty
-Got it. I've added this task:
- [E][ ]study(from: 6pm to: 8pm)
-Now you have 1 tasks in the list.
+    Hello! I'm Cosmic
+    What can I do for you?
+    Here are the tasks in your list:
+    1. [T][ ]read book
+    2. [E][ ]meeting(from: 2pm to: 4pm)
+    3. [T][ ]read book
+    4. [T][ ]do homework
+    5. [D][ ]assignment(by:tomorrow)
+    6. [E][ ]meeting(from: 2pm to: 4pm)
+    Got it. I've added this task:
+     [T][ ]read book
+    Now you have 7 tasks in the list.
+    Got it. I've added this task:
+     [T][ ]do homework
+    Now you have 8 tasks in the list.
+    OOPS!!! The description of a todo cannot be empty.
+    Got it. I've added this task:
+     [D][ ]assignment(by:tomorrow)
+    Now you have 9 tasks in the list.
+    OOPS!!! The description of a deadline cannot be empty.
+    OOPS!!! Deadline must contain /by.
+    OOPS!!! Description and date cannot be empty.
+    OOPS!!! Description and date cannot be empty.
+    Got it. I've added this task:
+     [E][ ]meeting(from: 2pm to: 4pm)
+    Now you have 10 tasks in the list.
+    OOPS!!! The description of an event cannot be empty.
+    OOPS!!! Event must contain /from and /to.
+    OOPS!!! Event must contain /from and /to.
+    OOPS!!! Event must contain /from and /to.
+    OOPS!!! Description, from, and to cannot be empty.
+    Here are the tasks in your list:
+    1. [T][ ]read book
+    2. [E][ ]meeting(from: 2pm to: 4pm)
+    3. [T][ ]read book
+    4. [T][ ]do homework
+    5. [D][ ]assignment(by:tomorrow)
+    6. [E][ ]meeting(from: 2pm to: 4pm)
+    7. [T][ ]read book
+    8. [T][ ]do homework
+    9. [D][ ]assignment(by:tomorrow)
+    10. [E][ ]meeting(from: 2pm to: 4pm)
+    Nice! I've marked this task as done:
+     [T][X]read book
+    OOPS!!! Invalid task number!
+    OOPS!!! Please enter a valid task number.
+    OK, I've marked this task as not done yet:
+     [T][ ]read book
+    Noted, I've removed this task
+     [E][ ]meeting(from: 2pm to: 4pm)
+    Now you have 9 tasks in your list
+    OOPS!!! This task number does not exist.
+    OOPS!!! Please enter a valid task number.
+    Here are the tasks in your list:
+    1. [T][ ]read book
+    2. [T][ ]read book
+    3. [T][ ]read book
+    OOPS!!! The description of a find command cannot be empty.
+    Here are the tasks in your list:
+    OOPS!!! Sorry I don't understand that :(
+    Bye. Hope to see you again soon!

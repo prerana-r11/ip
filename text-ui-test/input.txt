@@ -1,8 +1,28 @@
+list
+todo read book
+todo do homework
 todo
+deadline assignment /by tomorrow
 deadline
-deadline eat
-deadline eat /by
+deadline homework
+deadline homework /by
+deadline /by tomorrow
+event meeting /from 2pm /to 4pm
 event
-event .by
-event /from /to
-event study /from 6pm /to 8pm
+event meeting
+event meeting /from
+event meeting /to
+event /from 2pm /to 4pm
+list
+mark 1
+mark 100
+mark abc
+unmark 1
+delete 2
+delete 100
+delete abc
+find book
+find
+find xyz
+hello
+bye

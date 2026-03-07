@@ -10,7 +10,6 @@ import java.util.Scanner;
  * coordinates task operations, and interacts with the UI and Storage classes.
  */
 public class Cosmic {
-
     private static final String FILE_PATH = "./data/cosmic.txt";
 
     /**
@@ -38,7 +37,7 @@ public class Cosmic {
                 if (input.startsWith("delete ")) {
                     int index = Integer.parseInt(input.substring(7)) - 1;
                     if (index < 0 || index >= tasks.size()) {
-                        throw new CosmicException("This task number does not exist.");
+                        throw new CosmicException( "This task number does not exist.");
                     }
                     Task deleted = tasks.delete(index);
                     storage.save(tasks);
@@ -62,7 +61,7 @@ public class Cosmic {
                     continue;
                 }
 
-                if (input.startsWith("todo ")) {
+                if (input.startsWith("todo")) {
                     String description = getFindContent(input);
                     if (description.isEmpty()) {
                         throw new CosmicException("The description of a todo cannot be empty.");
@@ -76,7 +75,7 @@ public class Cosmic {
                 }
 
 
-                if (input.startsWith("deadline ")) {
+                if (input.startsWith("deadline")) {
                     String content = getDeadlineContent(input);
 
                     String[] parts = content.split("/by", 2);
@@ -95,7 +94,7 @@ public class Cosmic {
                 }
 
 
-                if (input.startsWith("event ")) {
+                if (input.startsWith("event")) {
                     String content = getEventContent(input);
 
                     String[] parts = content.split("/from|/to", 3);
@@ -151,6 +150,9 @@ public class Cosmic {
      * @return The trimmed content after the prefix.
      */
     private static String getFindContent(String input) {
+        if (input.length() <= 4) {
+            return "";
+        }
         return input.substring(5).trim();
     }
 
@@ -162,8 +164,11 @@ public class Cosmic {
      * @throws CosmicException If required keywords are missing.
      */
     private static String getEventContent(String input) throws CosmicException {
-        String content = input.substring(6).trim();
 
+        if (input.length() <= 5) {
+            throw new CosmicException("The description of an event cannot be empty.");
+        }
+        String content = input.substring(6).trim();
         if (!content.contains("/from") || !content.contains("/to")) {
             throw new CosmicException("Event must contain /from and /to.");
         }
@@ -178,8 +183,14 @@ public class Cosmic {
      * @throws CosmicException If the "/by" keyword is missing.
      */
     private static String getDeadlineContent(String input) throws CosmicException {
-        String content = input.substring(9).trim();
 
+        if (input.length() <= 8) {
+            throw new CosmicException("The description of a deadline cannot be empty.");
+        }
+        String content = input.substring(9).trim();
+        if (content.isEmpty()) {
+            throw new CosmicException("The description of a deadline cannot be empty.");
+        }
         if (!content.contains("/by")) {
             throw new CosmicException("Deadline must contain /by.");
         }
